@@ -39,7 +39,17 @@ const JobsContainer: FC = () => {
         setPage(page - 1);
     };
 
-    const handleSearch = (event: React.MouseEvent) => {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
+
+    const handleSearchClick = (event: React.MouseEvent) => {
+        handleSearch();
+    };
+
+    const handleSearch = () => {
         if (page !== 0) {
             setPage(0);
         } else {
@@ -54,8 +64,15 @@ const JobsContainer: FC = () => {
     return (
       <Container fixed>
         <Box display="flex" justifyContent="space-between" sx={{ padding: 2, backgroundColor: "#eee", mb: 5, borderBottomLeftRadius: 8, borderBottomRightRadius: 8 }}>
-            <TextField variant="outlined" placeholder="Job Title" value={keyword} onChange={(e) => setKeyword(e.target.value)} sx={{ backgroundColor: "#fff" }}></TextField>
-            <Button variant="contained" onClick={handleSearch}>Search</Button>
+            <TextField
+                variant="outlined"
+                placeholder="Job Title"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                onKeyDown={handleKeyDown}
+                sx={{ backgroundColor: "#fff" }}
+            />
+            <Button variant="contained" onClick={handleSearchClick}>Search</Button>
         </Box>
         <Typography variant="h5" sx={{ mb: 2 }}>Recent Openings</Typography>
         {currentJob ? (
