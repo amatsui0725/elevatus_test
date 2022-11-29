@@ -23,7 +23,7 @@ const JobCard: FC<JobCardProps> = ({ job, handleViewClick, type = "large" }: Job
     }
     if (type === "simple") {
         return (
-            <Card sx={{ mb: 2, cursor: "pointer" }} onClick={() => handleViewClick(job)}>
+            <Card data-testid="simple-jobcard" sx={{ mb: 2, cursor: "pointer" }} onClick={() => handleViewClick(job)}>
                 <CardContent>
                     <Typography variant="subtitle1">
                         {job.title}
@@ -70,7 +70,7 @@ const JobCard: FC<JobCardProps> = ({ job, handleViewClick, type = "large" }: Job
                 </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: "flex-end" }}>
-                <Button variant="outlined" size="small" onClick={() => handleViewClick(job)}>View</Button>
+                <Button variant="outlined" size="small" onClick={() => handleViewClick(job)} data-testid="view-button">View</Button>
             </CardActions>
         </Card>
     );
